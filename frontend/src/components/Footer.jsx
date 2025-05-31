@@ -9,6 +9,7 @@ const Footer = () => {
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 mb-6">
           <a
             href="mailto:heyiamfrom2025@gmail.com"
+            area-label="send an email"
             className="flex items-center gap-2 text-sm hover:text-white transition-colors"
           >
             <FaEnvelope /> <span>heyiamfrom2025@gmail.com</span>
