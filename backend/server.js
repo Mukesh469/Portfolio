@@ -8,7 +8,6 @@ import contactRoutes from './routes/contact.js';
 
 
 // to debug that it actually load or not 
-console.log('BREVO_API_KEY=', process.env.BREVO_API_KEY?.slice(0,10), '…');
 const app = express();
 
 // Connect to Mongo
