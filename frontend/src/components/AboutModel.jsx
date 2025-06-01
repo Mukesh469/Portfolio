@@ -12,7 +12,8 @@ const AboutModel = () => {
 
   return (
     <div
-      className="fixed inset-0 z-50 backdrop-blur-md bg-opacity-50 flex items-center  justify-center p-4"
+     className="fixed inset-0 z-50 md:flex items-center justify-center backdrop-blur-md bg-opacity-50 bg-opacity-50 p-4 py-10"
+      
       onClick={closeModel}
     >
       <SEO
