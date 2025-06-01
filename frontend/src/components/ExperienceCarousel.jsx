@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import SEO from "./SEO";
 
 const experiences = [
   {
@@ -25,7 +26,6 @@ const experiences = [
       "Developed a solid foundation in IT and project workflows.",
     ],
   },
-  // Add more experiences as needed
 ];
 
 const cardVariants = {
@@ -36,6 +36,19 @@ const cardVariants = {
 const ExperienceList = () => {
   return (
     <section className="w-full px-4 py-12 max-w-7xl mx-auto text-white">
+      <SEO
+        title="Experience | Mukesh Kumar"
+        description="Explore Mukesh Kumar's frontend development experience including projects, internships, and freelance work in React, JavaScript, HTML, and CSS."
+        keywords={[
+          "Mukesh Kumar experience",
+          "Frontend Developer Portfolio",
+          "React Developer Experience",
+          "Internship projects",
+          "Mukesh Kumar Resume",
+        ]}
+        image={`${window.location.origin}/assets/og-experience.png`} // optional custom OG image
+      />
+
       <h2 className="text-4xl font-bold text-center mb-10">Experience</h2>
 
       <div className="grid gap-8 sm:grid-cols-1 lg:grid-cols-2">

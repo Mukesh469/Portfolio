@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import {
   SiReact,
   SiJavascript,
@@ -54,20 +53,6 @@ const skillsData = [
   },
 ];
 
-const container = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const cardAnimation = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 }
-};
-
 export default function Skills() {
   return (
     <section className="max-w-6xl mx-auto px-6 py-20">
@@ -81,17 +66,10 @@ export default function Skills() {
             {category}
           </h3>
 
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
-            variants={container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {skills.map(({ name, icon, level, color }) => (
-              <motion.div
+              <div
                 key={name}
-                variants={cardAnimation}
                 className="bg-gray-800 rounded-xl p-6 shadow-xl hover:shadow-2xl transition-shadow duration-300"
               >
                 <div className="flex items-center mb-4">
@@ -103,16 +81,14 @@ export default function Skills() {
                   <span className="text-sm font-semibold text-white">{level}%</span>
                 </div>
                 <div className="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
-                  <motion.div
-                    className={`${color} h-full rounded-full`}
-                    initial={{ width: 0 }}
-                    animate={{ width: `${level}%` }}
-                    transition={{ duration: 1.2, ease: 'easeOut' }}
+                  <div
+                    className={`${color} h-full rounded-full transition-all duration-1000`}
+                    style={{ width: `${level}%` }}
                   />
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       ))}
     </section>

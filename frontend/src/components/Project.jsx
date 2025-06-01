@@ -1,22 +1,10 @@
 import React, { useContext } from "react";
 import { AppContext } from "../AppContext";
-import { NavLink } from "react-router-dom";
-import { motion } from 'framer-motion';
 import AgencyDesktopImg from "../assets/AgencyDesktopImg.png";
 import DrumKitImg from "../assets/DrumKitDesktopImg.png";
 import CatchPokemonImg from "../assets/CatchPokemonImg.png";
 import FlaskTodoImg from "../assets/FlaskTodoImg.png";
-
-// Variants for image animations
-const leftVariants = {
-  hidden: { x: -100, opacity: 0 },
-  visible: { x: 0, opacity: 1, transition: { duration: 0.6 } },
-};
-
-const rightVariants = {
-  hidden: { x: 100, opacity: 0 },
-  visible: { x: 0, opacity: 1, transition: { duration: 0.6 } },
-};
+import SEO from "./SEO";
 
 const Project = () => {
   const { projectRef } = useContext(AppContext);
@@ -24,21 +12,20 @@ const Project = () => {
   return (
     <div
       ref={projectRef}
-      className="text-white flex flex-col items-center justify-center gap-10 lg:gap-20"
+      className="text-white flex flex-col items-center justify-center gap-10 lg:gap-20 "
     >
+      <SEO
+        title="Projects | Mukesh Kumar - Frontend Developer Portfolio"
+        description="Explore web development projects by Mukesh Kumar, including agency websites, drum kits, Pokémon games, and Flask apps. Built with HTML, CSS, JavaScript, React, and more."
+        keywords="Mukesh Kumar, portfolio, web projects, React projects, frontend developer, JavaScript, HTML, CSS, Flask, GitHub"
+      />
       <h2 className="text-4xl font-extrabold text-center tracking-wide py-10 relative top-10">
         Projects
       </h2>
+
       {/* Project 1: Agency Website */}
       <section className="flex flex-col md:flex-row items-center justify-center gap-10 max-w-6xl w-full">
-        {/* Image Block */}
-        <motion.div
-          className="bg-white p-4 rounded-xl w-full md:w-1/2 max-w-md shadow-md"
-          variants={leftVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
+        <div className="bg-white p-4 rounded-xl w-full md:w-1/2 max-w-md shadow-md">
           <h3 className="text-xl font-semibold text-gray-800 mb-3 text-center">
             Agency Website
           </h3>
@@ -65,9 +52,8 @@ const Project = () => {
               Code
             </a>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Text Block */}
         <div className="flex flex-col gap-4 w-full md:w-1/2 max-w-xl text-white">
           <h2 className="text-xl sm:text-2xl font-bold">Agency - Landing Page</h2>
           <p className="text-sm sm:text-base md:text-lg leading-relaxed text-gray-400 text-justify">
@@ -91,7 +77,6 @@ const Project = () => {
 
       {/* Project 2: Drum Kit */}
       <section className="flex flex-col-reverse md:flex-row items-center justify-center gap-13 max-w-6xl w-full">
-        {/* Text Block */}
         <div className="flex flex-col gap-4 w-full md:w-1/2 max-w-xl text-white">
           <h2 className="text-xl sm:text-2xl font-bold">Drum Kit</h2>
           <p className="text-sm sm:text-base md:text-lg leading-relaxed text-gray-400 text-justify">
@@ -110,14 +95,7 @@ const Project = () => {
           </div>
         </div>
 
-        {/* Image Block */}
-        <motion.div
-          className="bg-white p-4 rounded-xl w-full md:w-1/2 max-w-md shadow-md"
-          variants={rightVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
+        <div className="bg-white p-4 rounded-xl w-full md:w-1/2 max-w-md shadow-md">
           <h3 className="text-xl font-semibold text-gray-800 mb-3 text-center">
             Drum Kit Website
           </h3>
@@ -144,19 +122,12 @@ const Project = () => {
               Code
             </a>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* Project 3: Catch Pokemon */}
       <section className="flex flex-col md:flex-row items-center justify-center gap-10 max-w-6xl w-full">
-        {/* Image Block */}
-        <motion.div
-          className="bg-white p-4 rounded-xl w-full md:w-1/2 max-w-md shadow-md"
-          variants={leftVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
+        <div className="bg-white p-4 rounded-xl w-full md:w-1/2 max-w-md shadow-md">
           <h3 className="text-xl font-semibold text-gray-800 mb-3 text-center">
             Catch Pokemon
           </h3>
@@ -183,9 +154,8 @@ const Project = () => {
               Code
             </a>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Text Block */}
         <div className="flex flex-col gap-4 w-full md:w-1/2 max-w-xl text-white">
           <h2 className="text-xl sm:text-2xl font-bold">Catch Pokemon</h2>
           <p className="text-sm sm:text-base md:text-lg leading-relaxed text-gray-400 text-justify">
@@ -207,7 +177,6 @@ const Project = () => {
 
       {/* Project 4: Flask Web App */}
       <section className="flex flex-col-reverse md:flex-row items-center justify-center gap-10 max-w-6xl w-full">
-        {/* Text Block */}
         <div className="flex flex-col gap-4 w-full md:w-1/2 max-w-xl text-white">
           <h2 className="text-xl sm:text-2xl font-bold">Flask Web App</h2>
           <p className="text-sm sm:text-base md:text-lg leading-relaxed text-gray-400 text-justify">
@@ -226,14 +195,7 @@ const Project = () => {
           </div>
         </div>
 
-        {/* Image Block */}
-        <motion.div
-          className="bg-white p-4 rounded-xl w-full md:w-1/2 max-w-md shadow-md"
-          variants={rightVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
+        <div className="bg-white p-4 rounded-xl w-full md:w-1/2 max-w-md shadow-md">
           <h3 className="text-xl font-semibold text-gray-800 mb-3 text-center">
             Flask Todos
           </h3>
@@ -260,7 +222,7 @@ const Project = () => {
               Code
             </a>
           </div>
-        </motion.div>
+        </div>
       </section>
     </div>
   );

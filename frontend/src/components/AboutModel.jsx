@@ -3,7 +3,8 @@ import { AppContext } from "../AppContext";
 import { DiMongodb, DiNodejs, DiReact } from "react-icons/di";
 import { SiExpress } from "react-icons/si";
 import MukeshKumarPic from "../assets/MukeshKumarPic.png";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import SEO from "./SEO";
+
 const AboutModel = () => {
   const { isModelOpen, closeModel } = useContext(AppContext);
 
@@ -14,6 +15,12 @@ const AboutModel = () => {
       className="fixed inset-0 z-50 backdrop-blur-md bg-opacity-50 flex items-center  justify-center p-4"
       onClick={closeModel}
     >
+      <SEO
+        title="About | Mukesh Kumar"
+        description="Learn more about Mukesh Kumar, a passionate frontend developer from New Delhi. Check out my skills, experience, and projects."
+        keywords={["Mukesh Kumar", "About Me", "Frontend Developer", "Skills", "Experience"]}
+        image={`${window.location.origin}/assets/og-about.png`}
+      />
       <div
         onClick={(e) => e.stopPropagation()}
         className="bg-slate-200 rounded-lg p-6 max-w-5xl w-full relative text-black shadow-lg overflow-y-auto max-h-[90vh]"

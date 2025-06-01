@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AppContext } from "../AppContext";
-import { useContext } from "react";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,16 +15,19 @@ const Header = () => {
   };
 
   return (
-    <header className="backdrop-blur-md px-4 sm:px-10 py-6 w-full z-50 fixed top-0 left-0">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <NavLink to="/">
+    <header className="backdrop-blur-md px-4 sm:px-10 py-6 w-full z-50 fixed top-0 left-0 overflow-x-hidden">
+      <div className="max-w-7xl mx-auto flex justify-between items-center w-full">
+        <NavLink to="/" onClick={closeMenu}>
           <h1 className="text-[1.25rem] sm:text-xl font-bold text-white">
             Mukesh | Web Developer
           </h1>
         </NavLink>
 
         {/* Hamburger Icon */}
-        <button className="sm:hidden text-3xl text-white" onClick={toggleMenu}>
+        <button
+          className="sm:hidden text-3xl text-white z-50"
+          onClick={toggleMenu}
+        >
           {menuOpen ? "✖" : "☰"}
         </button>
 
@@ -49,16 +51,30 @@ const Header = () => {
 
       {/* Mobile Nav Dropdown */}
       {menuOpen && (
-        <div className="sm:hidden mt-3 px-4 pb-4 bg-black/90 rounded-lg flex flex-col space-y-3 py-4 text-base text-white">
-          <a href="tel:8527747289" target="_blank" rel="noopener noreferrer">
+        <div className="sm:hidden mt-3 px-4 pb-4 w-full bg-black/90 rounded-lg flex flex-col space-y-3 py-4 text-base text-white">
+          <a
+            href="tel:8527747289"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+          >
             Phone
           </a>
-          <a href="https://wa.me/8527747289" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://wa.me/8527747289"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+          >
             WhatsApp
           </a>
-          <button onClick={scrollToProject} className="text-left">Projects</button>
+          <button onClick={() => {
+            scrollToProject();
+            closeMenu();
+          }} className="text-left">
+            Projects
+          </button>
         </div>
-
       )}
     </header>
   );

@@ -6,7 +6,7 @@ import AboutModel from "./AboutModel";
 import { MdEmail } from "react-icons/md";
 import { useTypewriter } from 'react-simple-typewriter'
 import { motion } from "framer-motion";
-import { FaUserAlt } from "react-icons/fa";
+import SEO from "./SEO";
 
 const HeroSection = () => {
   const { scrollToProject, isModelOpen, openModel } = useContext(AppContext);
@@ -19,10 +19,16 @@ const HeroSection = () => {
 
   return (
     <main className="flex flex-col items-center justify-center text-center min-h-screen px-4 relative">
+      <SEO
+        title="Mukesh Kumar | Frontend Developer Portfolio"
+        description="Hi, I'm Mukesh Kumar. I'm a frontend developer specializing in React, JavaScript, and modern UI/UX. Welcome to my portfolio."
+        keywords={["Mukesh Kumar", "Frontend Developer", "React", "JavaScript", "Portfolio"]}
+        image={`${window.location.origin}/assets/og-home.png`}
+      />
       <div className="flex flex-col justify-center items-center ">
         <h1
           className="text-4xl sm:text-5xl font-bold mb-6"
-        
+
         >
           Hi, I'm <span style={{ color: "#00bcd4" }}>Mukesh</span>
         </h1>

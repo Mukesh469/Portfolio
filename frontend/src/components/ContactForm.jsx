@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ContactusImg from "../assets/ContactusImg.png";
 import { FaPaperPlane } from 'react-icons/fa';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import SEO from "./SEO";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -37,6 +38,18 @@ const ContactForm = () => {
 
   return (
     <section id="contact" className="py-12 px-6 bg-transparent text-white">
+      <SEO
+        title="Contact | Mukesh Kumar"
+        description="Get in touch with Mukesh Kumar. Reach out for freelance work, collaborations, or any frontend development inquiries."
+        keywords={[
+          "Mukesh Kumar",
+          "Contact Mukesh",
+          "Frontend Developer Contact",
+          "Hire React Developer",
+          "Get in Touch",
+        ]}
+        image={`${window.location.origin}/assets/og-contact.png`} // or just remove this line to use the default
+      />
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 lg:p-12">
         {/* Image - hidden on small screens */}
         <div className="w-full md:w-1/2 hidden md:block">

@@ -2,99 +2,84 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { useEffect, useMemo, useState } from "react";
 import { loadSlim } from "@tsparticles/slim";
 
-const ParticlesComponent = (props) => {
+const ParticlesComponent = ({ id }) => {
   const [init, setInit] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
-      setInit(true);
-    });
-  }, []);
+    // Check screen size before loading particles
+    const checkMobile = () => {
+      if (typeof window !== "undefined") {
+        const isSmall = window.innerWidth < 1024; // Below 1024px (mobile + tablet)
+        setIsMobile(isSmall);
 
-  const handleParticlesLoaded = (container) => {
-    console.log(container); // Just for debugging
-  };
+        if (!isSmall) {
+          initParticlesEngine(async (engine) => {
+            await loadSlim(engine);
+          }).then(() => {
+            setInit(true);
+          });
+        }
+      }
+    };
+
+    checkMobile();
+
+    // Optional: update on resize
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const options = useMemo(
     () => ({
       background: {
-        color: {
-          value: "#0f172a", // Dark navy background
-        },
+        color: { value: "#0f172a" },
       },
       fpsLimit: 120,
       interactivity: {
         events: {
-          onClick: {
-            enable: true,
-            mode: "repulse",
-          },
-          onHover: {
-            enable: true,
-            mode: "grab",
-          },
+          onClick: { enable: true, mode: "repulse" },
+          onHover: { enable: true, mode: "grab" },
         },
         modes: {
-          push: {
-            distance: 200,
-            duration: 15,
-          },
-          grab: {
-            distance: 150,
-          },
+          grab: { distance: 150 },
+          repulse: { distance: 100 },
         },
       },
       particles: {
-        color: {
-          value: "#38bdf8", // Soft cyan-blue particles (tailwind's sky-400)
-        },
+        color: { value: "#38bdf8" },
         links: {
-          color: "#38bdf8", // Matching link color
-          distance: 150,
           enable: true,
+          color: "#38bdf8",
+          distance: 150,
           opacity: 0.3,
           width: 1,
         },
         move: {
-          direction: "none",
           enable: true,
-          outModes: {
-            default: "bounce",
-          },
-          random: true,
           speed: 1,
-          straight: false,
+          random: true,
+          direction: "none",
+          outModes: { default: "bounce" },
         },
         number: {
-          density: {
-            enable: true,
-          },
           value: 100,
+          density: { enable: true },
         },
-        opacity: {
-          value: 0.8,
-        },
-        shape: {
-          type: "circle",
-        },
-        size: {
-          value: { min: 1, max: 3 },
-        },
+        opacity: { value: 0.8 },
+        shape: { type: "circle" },
+        size: { value: { min: 1, max: 3 } },
       },
       detectRetina: true,
     }),
     []
   );
 
-  return (
-    <Particles
-      id={props.id}
-      options={options}
-      loaded={handleParticlesLoaded}
-    />
-  );
+  //  Don't render anything on small screens
+  if (isMobile || !init) return null;
+
+  //  Render particles only on desktop
+  return <Particles id={id} options={options} />;
 };
 
 export default ParticlesComponent;
