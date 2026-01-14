@@ -13,7 +13,7 @@ const HeroSection = () => {
 
   // Type Writter...
   const [text] = useTypewriter({
-    words: ['Frontend Developer', 'React Enthusiast', 'Building smooth UIs'],
+    words: ['Fullstack Developer (MERN)', 'Frontend Developer', 'React Enthusiast', 'Building smooth UIs'],
     loop: 0
   })
 
@@ -44,7 +44,13 @@ const HeroSection = () => {
             {text || '...'}
           </motion.span>
         </p>
-        <p> from India</p>
+        <p className="text-sm sm:text-base tracking-wide">
+          <span className="text-orange-500 font-semibold">IN</span>
+          <span className="text-white font-semibold">DI</span>
+          <span className="text-green-500 font-semibold">A</span>
+          <span className="text-gray-400">, New Delhi</span>
+        </p>
+
         <div className="flex gap-5 pt-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -58,11 +64,11 @@ const HeroSection = () => {
               style={{
                 backgroundColor: "#00bcd4",
               }}
-            >
-              About Me{" "}
-              <span className="transition-transform duration-300 group-hover:scale-150">
-                ↓
+            > <span className="transition-transform duration-300 group-hover:scale-150">
+               ←
               </span>
+              About Me{" "}
+             
             </button>
           </motion.div>
 
@@ -75,7 +81,7 @@ const HeroSection = () => {
             <a
               className="group flex justify-center items-center gap-2 mb-6 bg-slate-200 text-black px-4 py-2 rounded hover:bg-slate-300 transition-transform duration-300 hover:scale-110 hover:cursor-pointer"
               target="_blank"
-              href="https://drive.google.com/file/d/1JsHAHW1XcaYJ6JQbDzyauIoPtF7CjNBz/view?usp=sharing"
+              href="https://drive.google.com/file/d/1FKRa4RGLsv7qwrzYEMkzYSjutefqWuwr/view?usp=sharing"
               rel="noopener noreferrer"
             >
               View Resume →
@@ -123,10 +129,10 @@ const HeroSection = () => {
           viewport={{ once: true }}
         >
           <a
-            href="mailto:heyiamfrom2025@example.com"
+            href="mailto:mukesh512004@example.com"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Send email to heyiamfrom2025@example.com"
+            aria-label="Send email to mukesh512004@example.com"
           >
             <MdEmail
               size={45}
@@ -138,7 +144,7 @@ const HeroSection = () => {
 
       <button
         onClick={scrollToProject}
-        className="group flex justify-center items-center gap-2 text-xl relative top-40 md:top-30 lg:top-50 bg-[#00bcd4] hover:bg-sky-600 text-white font-semibold px-6 py-2 rounded-lg transition-transform duration-300 hover:scale-120 hover:cursor-pointer"
+        className="group flex justify-center items-center gap-2 text-xl relative top-20 md:top-30 lg:top-35 bg-[#00bcd4] hover:bg-sky-600 text-white font-semibold px-6 py-2 rounded-lg transition-transform duration-300 hover:scale-120 hover:cursor-pointer"
       >
         Projects
         <span className="text-2xl transition-transform duration-300 transform group-hover:scale-120">

@@ -136,7 +136,8 @@ const ContactForm = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        "https://portfolio-backend-k8yz.onrender.com/contact",
+        // "https://portfolio-backend-k8yz.onrender.com/contact"
+        "http://localhost:3000/contact",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

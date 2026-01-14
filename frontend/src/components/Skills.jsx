@@ -29,18 +29,18 @@ const skillsData = [
     ],
   },
   {
-    category: 'Backend (Learning)',
+    category: 'Backend ',
     skills: [
-      { name: 'Node.js', icon: <SiNodedotjs />, level: 60, color: 'bg-green-500' },
-      { name: 'Express', icon: <SiExpress />, level: 55, color: 'bg-gray-400' },
-      { name: 'REST APIs', icon: <SiPostman />, level: 65, color: 'bg-orange-400' },
+      { name: 'Node.js', icon: <SiNodedotjs />, level: 75, color: 'bg-green-500' },
+      { name: 'Express', icon: <SiExpress />, level: 80, color: 'bg-gray-400' },
+      { name: 'REST APIs', icon: <SiPostman />, level: 79, color: 'bg-orange-400' },
     ],
   },
   {
     category: 'Database',
     skills: [
       { name: 'MySQL', icon: <SiMysql />, level: 75, color: 'bg-blue-600' },
-      { name: 'MongoDB', icon: <SiMongodb />, level: 65, color: 'bg-green-600' },
+      { name: 'MongoDB', icon: <SiMongodb />, level: 86, color: 'bg-green-600' },
     ],
   },
   {
@@ -56,7 +56,7 @@ const skillsData = [
 export default function Skills() {
   return (
     <section className="max-w-6xl mx-auto px-6 py-20">
-      <h2 className="text-4xl font-extrabold text-center text-white mb-12">
+      <h2 className="text-4xl font-extrabold text-center text-white mb-7">
         My Skills
       </h2>
 

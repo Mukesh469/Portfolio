@@ -1,20 +1,23 @@
 import React from "react";
 import { motion } from "framer-motion";
 import SEO from "./SEO";
+import { NavLink } from "react-router-dom";
 
 const experiences = [
   {
-    title: "Frontend Developer Intern",
+    title: "Frontend Developer",
     company: "MyITROnline Global Service Pvt Ltd, New Delhi",
-    period: "March 2025 - June 2025",
+    period: "December 2024 – Present",
+    siteLink: "https://myitronline.com/",
     points: [
-      "Built responsive interfaces using React.js and Tailwind CSS.",
-      "Enhanced UI with Framer Motion animations.",
-      "Contributed to Texa23 (taxa23.com) on Homepage, Dashboard, Profile, etc.",
-      "Used Git/GitHub for code management and reviews.",
-      "Integrated APIs and followed frontend best practices.",
+      "Develop and maintain responsive, scalable user interfaces using React.js and Tailwind CSS.",
+      "Enhanced user experience with smooth animations using Framer Motion.",
+      "Actively contributed to production features for Texa23 (taxa23.com), including Homepage, Dashboard, and Profile modules.",
+      "Integrated REST APIs and followed frontend best practices for performance and maintainability.",
+      "Collaborated with team members using Git and GitHub for version control, code reviews, and deployments."
     ],
   },
+
   {
     title: "Training Specialist",
     company: "Tech Mahindra",
@@ -49,7 +52,7 @@ const ExperienceList = () => {
         image={`${window.location.origin}/assets/og-experience.png`} // optional custom OG image
       />
 
-      <h2 className="text-4xl font-bold text-center mb-10">Experience</h2>
+      <h2 className="text-4xl font-bold text-center mb-10 ">Experience</h2>
 
       <div className="grid gap-8 sm:grid-cols-1 lg:grid-cols-2">
         {experiences.map((exp, idx) => (
@@ -64,7 +67,20 @@ const ExperienceList = () => {
             <h3 className="text-2xl font-bold text-indigo-300 mb-1">
               {exp.title}
             </h3>
-            <p className="text-sm text-gray-400">{exp.company}</p>
+
+            {exp.siteLink ? (
+              <NavLink
+                to={exp.siteLink}
+                className="text-sm text-blue-400 underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {exp.company}
+              </NavLink>
+            ) : (
+              <p className="text-sm text-gray-400">{exp.company}</p>
+            )}
+
             <p className="text-sm text-gray-500 italic mb-4">{exp.period}</p>
             <ul className="list-disc list-inside space-y-2 text-gray-300 text-sm">
               {exp.points.map((point, i) => (

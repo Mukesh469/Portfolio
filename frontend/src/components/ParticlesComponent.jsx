@@ -3,83 +3,91 @@ import { useEffect, useMemo, useState } from "react";
 import { loadSlim } from "@tsparticles/slim";
 
 const ParticlesComponent = ({ id }) => {
-  const [init, setInit] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [ready, setReady] = useState(false);
 
+  // Initialize particles engine ONCE
   useEffect(() => {
-    // Check screen size before loading particles
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => {
+      setReady(true);
+    });
+  }, []);
+
+  // Handle screen resize safely
+  useEffect(() => {
     const checkMobile = () => {
       if (typeof window !== "undefined") {
-        const isSmall = window.innerWidth < 1024; // Below 1024px (mobile + tablet)
-        setIsMobile(isSmall);
-
-        if (!isSmall) {
-          initParticlesEngine(async (engine) => {
-            await loadSlim(engine);
-          }).then(() => {
-            setInit(true);
-          });
-        }
+        setIsMobile(window.innerWidth < 1024);
       }
     };
 
     checkMobile();
-
-    // Optional: update on resize
     window.addEventListener("resize", checkMobile);
+
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  // Optimized options for desktop & mobile
   const options = useMemo(
     () => ({
       background: {
         color: { value: "#0f172a" },
       },
-      fpsLimit: 120,
+
+      fpsLimit: isMobile ? 45 : 120,
+
       interactivity: {
         events: {
-          onClick: { enable: true, mode: "repulse" },
-          onHover: { enable: true, mode: "grab" },
+          onHover: { enable: !isMobile, mode: "grab" },
+          onClick: { enable: !isMobile, mode: "repulse" },
         },
         modes: {
-          grab: { distance: 150 },
-          repulse: { distance: 100 },
+          grab: { distance: 120 },
+          repulse: { distance: 80 },
         },
       },
+
       particles: {
+        number: {
+          value: isMobile ? 35 : 90, // 👈 reduced, not removed
+          density: { enable: true },
+        },
         color: { value: "#38bdf8" },
         links: {
-          enable: true,
+          enable: !isMobile, // disable links on mobile (big perf win)
           color: "#38bdf8",
-          distance: 150,
-          opacity: 0.3,
+          distance: 140,
+          opacity: 0.25,
           width: 1,
         },
         move: {
           enable: true,
-          speed: 1,
+          speed: isMobile ? 0.4 : 1,
           random: true,
           direction: "none",
           outModes: { default: "bounce" },
         },
-        number: {
-          value: 100,
-          density: { enable: true },
-        },
-        opacity: { value: 0.8 },
+        opacity: { value: 0.7 },
         shape: { type: "circle" },
-        size: { value: { min: 1, max: 3 } },
+        size: { value: { min: 1, max: isMobile ? 2 : 3 } },
       },
+
       detectRetina: true,
     }),
-    []
+    [isMobile]
   );
 
-  //  Don't render anything on small screens
-  if (isMobile || !init) return null;
+  if (!ready) return null;
 
-  //  Render particles only on desktop
-  return <Particles id={id} options={options} />;
+  return (
+    <Particles
+      id={id}
+      options={options}
+      className="fixed inset-0 -z-10"
+    />
+  );
 };
 
 export default ParticlesComponent;

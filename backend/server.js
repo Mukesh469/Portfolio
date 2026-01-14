@@ -7,26 +7,40 @@ import cors from 'cors';
 import connectDB from './config/database.js';
 import contactRoutes from './routes/contact.js';
 
-const app = express(); //  Initialize app FIRST
+const app = express();
 
-//  Enable CORS only for your frontend
-app.use(cors({
-  origin: 'https://portfolio-frontend-tu07.onrender.com',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type']
-}));
+const allowedOrigins = [
+  'https://portfolio-frontend-tu07.onrender.com',
+  'http://localhost:5000'
+];
 
-//  Connect to MongoDB
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
+  })
+);
+
+// 🔗 Connect DB
 connectDB();
 
-//  Middleware
+// Middleware
 app.use(express.json());
 
-//  Routes
+// Routes
 app.use('/contact', contactRoutes);
 
-//  Start server
+// Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>
-  console.log(`Server running on http://localhost:${PORT}`)
+  console.log(`🚀 Server running on http://localhost:${PORT}`)
 );
