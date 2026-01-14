@@ -157,3 +157,7 @@ I build clean, scalable, and user-focused web applications using modern frontend
 
 If you find this project useful, feel free to star the repository.  
 Suggestions and improvements are always welcome.
+
+## License
+
+This project is licensed under the MIT License.
