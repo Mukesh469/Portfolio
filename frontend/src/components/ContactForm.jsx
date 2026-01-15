@@ -135,17 +135,15 @@ const ContactForm = () => {
 
     try {
       setLoading(true);
-      const res = await fetch(
-        "https://portfolio-backend-k8yz.onrender.com/contact",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: trimmedName,
-            email: trimmedEmail,
-            message: trimmedMessage,
-          }),
-        }
+      const res = await fetch("https://portfolio-backend-k8yz.onrender.com/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: trimmedName,
+          email: trimmedEmail,
+          message: trimmedMessage,
+        }),
+      }
       );
 
       const result = await res.json();
