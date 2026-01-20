@@ -81,7 +81,7 @@ const HeroSection = () => {
             <a
               className="group flex justify-center items-center gap-2 mb-6 bg-slate-200 text-black px-4 py-2 rounded hover:bg-slate-300 transition-transform duration-300 hover:scale-110 hover:cursor-pointer"
               target="_blank"
-              href="https://drive.google.com/file/d/1FKRa4RGLsv7qwrzYEMkzYSjutefqWuwr/view?usp=sharing"
+              href="https://drive.google.com/file/d/1GBA5BDXooAUTJAz12qY8ai3WcUfa46Zo/view?usp=sharing"
               rel="noopener noreferrer"
             >
               View Resume →
