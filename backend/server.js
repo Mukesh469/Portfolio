@@ -10,8 +10,7 @@ import contactRoutes from './routes/contact.js';
 const app = express();
 
 const allowedOrigins = [
-  'https://portfolio-frontend-tu07.onrender.com',
-  'http://localhost:5000'
+  'https://portfolio-backend-k8yz.onrender.com',
 ];
 
 app.use(
