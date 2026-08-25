@@ -1,99 +1,95 @@
-import { useContext } from "react";
-import { AppContext } from "../AppContext";
 import { NavLink } from "react-router-dom";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import AboutModel from "./AboutModel";
-import { MdEmail } from "react-icons/md";
-import { useTypewriter } from 'react-simple-typewriter'
-import { motion } from "framer-motion";
-import SEO from "./SEO";
+import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { MdEmail, MdPhone } from "react-icons/md";
+import { useTypewriter } from "react-simple-typewriter";
+import { motion, useScroll, useTransform } from "framer-motion";
 
-const HeroSection = () => {
-  const { scrollToProject, isModelOpen, openModel } = useContext(AppContext);
+const HeroSection = ({
+  onPrimaryAction,
+  onProjectsClick,
+}) => {
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 600], [0, 120]);
+  const opacity = useTransform(scrollY, [0, 500], [1, 0.35]);
 
-  // Type Writter...
+  const jumpToProjects = () => {
+    if (onPrimaryAction) {
+      onPrimaryAction();
+    }
+  };
+
   const [text] = useTypewriter({
-    words: ['Fullstack Developer (MERN)', 'Frontend Developer', 'React Enthusiast', 'Building smooth UIs'],
-    loop: 0
-  })
+    words: [
+      "Fullstack Developer (MERN)",
+      "Frontend Developer",
+      "React Enthusiast",
+      "Building smooth UIs",
+    ],
+    loop: 0,
+  });
 
   return (
-    <main className="flex flex-col items-center justify-center text-center min-h-screen px-4 relative">
-      <SEO
-        title="Mukesh Kumar | Frontend Developer Portfolio"
-        description="Hi, I'm Mukesh Kumar. I'm a frontend developer specializing in React, JavaScript, and modern UI/UX. Welcome to my portfolio."
-        keywords={["Mukesh Kumar", "Frontend Developer", "React", "JavaScript", "Portfolio"]}
-        image={`${window.location.origin}/assets/og-home.png`}
-      />
-      <div className="flex flex-col justify-center items-center ">
-        <h1
-          className="text-4xl sm:text-5xl font-bold mb-6"
+    <main className="relative flex min-h-screen flex-col px-4 pt-0 sm:px-8 lg:px-12">
+      <motion.div
+        style={{ y, opacity }}
+        className="relative z-10 mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center pt-20 text-center"
+      >
+        <p className="mb-4 rounded-full border border-cyan-300/40 bg-cyan-300/10 px-4 py-2 text-xs uppercase tracking-[0.28em] text-cyan-200 sm:text-sm">
+          Portfolio 2026
+        </p>
 
-        >
-          Hi, I'm <span style={{ color: "#00bcd4" }}>Mukesh</span>
-        </h1>
+        <h2 className="mb-6 text-4xl font-bold leading-tight sm:text-6xl">
+          Hi, I&apos;m <span className="text-cyan-400">Mukesh</span>
+        </h2>
 
-        <p className="text-lg sm:text-xl mb-4 text-gray-300">
+        <p className="mb-4 text-lg text-slate-200 sm:text-2xl">
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            className={`inline-block transition-all duration-300 ${text === '' ? 'blur-sm text-red-400 scale-[1.02]' : ''
-              }`}
+            transition={{ duration: 0.4 }}
+            className={`inline-block transition-all duration-300 ${
+              text === "" ? "blur-sm text-cyan-300 scale-[1.02]" : ""
+            }`}
           >
-            {text || '...'}
+            {text || "..."}
           </motion.span>
         </p>
-        <p className="text-sm sm:text-base tracking-wide">
-          <span className="text-orange-500 font-semibold">IN</span>
-          <span className="text-white font-semibold">DI</span>
-          <span className="text-green-500 font-semibold">A</span>
-          <span className="text-gray-400">, New Delhi</span>
+
+        <p className="mb-10 text-sm tracking-wide text-slate-300 sm:text-base">
+          <span className="font-semibold text-orange-400">IN</span>
+          <span className="font-semibold text-white">DI</span>
+          <span className="font-semibold text-green-400">A</span>
+          <span>, New Delhi</span>
         </p>
 
-        <div className="flex gap-5 pt-10">
-          <motion.div
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <motion.button
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.55 }}
             viewport={{ once: true }}
+            onClick={jumpToProjects}
+            className="group rounded-xl bg-cyan-500 px-6 py-3 font-semibold text-slate-900 transition duration-300 hover:-translate-y-1 hover:bg-cyan-400"
           >
-            <button
-              className="group flex justify-center items-center gap-2 mb-6  text-black px-4 py-2 rounded hover:bg-slate-300 transition-transform duration-300 hover:scale-110 hover:cursor-pointer"
-              onClick={openModel}
-              style={{
-                backgroundColor: "#00bcd4",
-              }}
-            > <span className="transition-transform duration-300 group-hover:scale-150">
-               ←
-              </span>
-              About Me{" "}
-             
-            </button>
-          </motion.div>
+            Let&apos;s Connect
+          </motion.button>
 
-          <motion.div
+          <motion.a
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.55, delay: 0.15 }}
             viewport={{ once: true }}
+            className="rounded-xl border border-white/30 bg-white/10 px-6 py-3 font-semibold text-white transition duration-300 hover:-translate-y-1 hover:bg-white/20"
+            target="_blank"
+            href="https://drive.google.com/file/d/1FY2xYHEXSk_tF-rad5ZOr-yDagHSTHrx/view?usp=sharing"
+            rel="noopener noreferrer"
           >
-            <a
-              className="group flex justify-center items-center gap-2 mb-6 bg-slate-200 text-black px-4 py-2 rounded hover:bg-slate-300 transition-transform duration-300 hover:scale-110 hover:cursor-pointer"
-              target="_blank"
-              href="https://drive.google.com/file/d/1GBA5BDXooAUTJAz12qY8ai3WcUfa46Zo/view?usp=sharing"
-              rel="noopener noreferrer"
-            >
-              View Resume →
-            </a>
-          </motion.div>
+            View Resume
+          </motion.a>
         </div>
-      </div>
-      {/* <AboutModel /> */}
-      {isModelOpen ? <AboutModel /> : ""}
+      </motion.div>
 
-      {/* Socials and button same as before */}
-      <ul className="flex gap-5 sm:flex-col sm:absolute sm:top-1/2 sm:right-10 sm:transform sm:-translate-y-1/2 sm:gap-4">
+      <ul className="absolute right-4 top-1/2 z-20 hidden -translate-y-1/2 gap-4 sm:flex sm:flex-col lg:right-8">
         <motion.li
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -102,8 +98,8 @@ const HeroSection = () => {
         >
           <NavLink to="https://github.com/Mukesh469" target="_blank">
             <FaGithub
-              size={45}
-              className="transition-transform duration-300 transform hover:scale-110 hover:text-white"
+              size={40}
+              className="rounded-full border border-white/25 bg-slate-900/45 p-2 text-white transition duration-300 hover:scale-110 hover:text-cyan-300"
             />
           </NavLink>
         </motion.li>
@@ -116,8 +112,8 @@ const HeroSection = () => {
         >
           <NavLink to="https://linkedin.com/in/mukesh-kumar-86a182264/" target="_blank">
             <FaLinkedin
-              size={45}
-              className="transition-transform duration-300 transform hover:scale-110 hover:text-white"
+              size={40}
+              className="rounded-full border border-white/25 bg-slate-900/45 p-2 text-white transition duration-300 hover:scale-110 hover:text-cyan-300"
             />
           </NavLink>
         </motion.li>
@@ -135,21 +131,54 @@ const HeroSection = () => {
             aria-label="Send email to mukesh512004@example.com"
           >
             <MdEmail
-              size={45}
-              className="transition-transform duration-300 transform hover:scale-110 hover:text-white"
+              size={40}
+              className="rounded-full border border-white/25 bg-slate-900/45 p-2 text-white transition duration-300 hover:scale-110 hover:text-cyan-300"
+            />
+          </a>
+        </motion.li>
+
+        <motion.li
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          viewport={{ once: true }}
+        >
+          <a
+            href="https://wa.me/8527747289"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Chat on WhatsApp"
+          >
+            <FaWhatsapp
+              size={40}
+              className="rounded-full border border-white/25 bg-slate-900/45 p-2 text-white transition duration-300 hover:scale-110 hover:text-cyan-300"
+            />
+          </a>
+        </motion.li>
+
+        <motion.li
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <a
+            href="tel:+918527747289"
+            aria-label="Call phone number"
+          >
+            <MdPhone
+              size={40}
+              className="rounded-full border border-white/25 bg-slate-900/45 p-2 text-white transition duration-300 hover:scale-110 hover:text-cyan-300"
             />
           </a>
         </motion.li>
       </ul>
 
       <button
-        onClick={scrollToProject}
-        className="group flex justify-center items-center gap-2 text-xl relative top-20 md:top-30 lg:top-35 bg-[#00bcd4] hover:bg-sky-600 text-white font-semibold px-6 py-2 rounded-lg transition-transform duration-300 hover:scale-120 hover:cursor-pointer"
+        onClick={onProjectsClick || jumpToProjects}
+        className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 rounded-full border border-cyan-300/50 bg-slate-900/70 px-4 py-2 text-sm font-semibold text-cyan-200 transition hover:bg-slate-800"
       >
-        Projects
-        <span className="text-2xl transition-transform duration-300 transform group-hover:scale-120">
-          ↓
-        </span>
+        Scroll Down
       </button>
     </main>
   );
